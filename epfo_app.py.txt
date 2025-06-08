@@ -1,0 +1,27 @@
+import streamlit as st
+
+st.set_page_config(page_title="EPFO Wage Calculator", page_icon="💼")
+
+st.title("💼 EPFO Wage Calculator")
+st.write("Enter the monthly wage below to see contribution breakdowns:")
+
+# Input
+wage = st.number_input("Monthly Wage (₹)", min_value=0, step=100)
+
+if wage > 0:
+    ee = wage * 0.12
+    pension = wage * 0.0833
+    epf = wage * 0.0367
+    edli = wage * 0.005
+    ac2 = wage * 0.005
+    admin = wage * 0.015
+    total = ee + pension + epf + edli + ac2 + admin
+
+    st.subheader("📊 Breakdown:")
+    st.write(f"👩‍💼 Employee (EE) Contribution (12%): ₹{ee:.2f}")
+    st.write(f"👨‍💼 Employer Pension (8.33%): ₹{pension:.2f}")
+    st.write(f"📂 Employer EPF (3.67%): ₹{epf:.2f}")
+    st.write(f"🛡️ EDLI (0.5%): ₹{edli:.2f}")
+    st.write(f"📁 Admin A/C 2 (0.5%): ₹{ac2:.2f}")
+    st.write(f"🧾 Other Admin Charges (1.5%): ₹{admin:.2f}")
+    st.success(f"💰 Total Deduction: ₹{total:.2f}")
